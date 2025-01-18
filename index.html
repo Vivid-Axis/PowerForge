@@ -15,15 +15,40 @@
         }
 
         header {
-            background: radial-gradient(circle, rgba(0, 0, 0, 0.9) 50%, rgba(0, 128, 0, 0.7) 70%, rgba(0, 0, 0, 1) 100%);
-            color: #d0f0d0;
-            text-align: center;
-            padding: 100px 40px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-            position: relative;
-            text-shadow: 0 0 15px #3f663f;
-            backdrop-filter: blur(790px);
-        }
+    position: relative;
+    color: #d0f0d0;
+    text-align: center;
+    padding: 100px 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 0 15px #3f663f;
+    z-index: 1;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.9) 50%, rgba(35, 117, 35, 0.7) 70%, rgba(0, 0, 0, 1) 100%);
+    filter: blur(50px); /* Adjust the blur intensity */
+    z-index: -1; /* Keeps the blur behind the content */
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Adjust the height of the fade */
+    background: linear-gradient(to bottom, transparent, black);
+    z-index: 0; /* Keeps the fade layer behind the content */
+}
+
+
 
         header h1 {
             font-size: 4rem;
