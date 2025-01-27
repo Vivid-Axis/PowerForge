@@ -20,7 +20,7 @@
     text-align: center;
     padding: 100px 40px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    text-shadow: 0 0 15px #3f663f;
+    text-shadow: 0 0 15px #71b671;
     z-index: 1;
     overflow: hidden;
 }
@@ -73,7 +73,7 @@ header::after {
         section h2 {
             font-size: 2.5rem;
             text-align: center;
-            color: #364636a2;
+            color: #00ff00;
             font-weight: 600;
             margin-bottom: 30px;
             text-transform: uppercase;
@@ -126,7 +126,7 @@ header::after {
             padding: 12px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            border: 2px solid #68686862; /* Add solid border */
+            border: 2px solid #364d2e62; /* Add solid border */
             transform: scale(1.05);
         }
 
@@ -363,6 +363,152 @@ header::after {
             </div>
         </div>
     </section>
+
+
+    <!-- Pictures Section -->
+<section id="pictures" class="pictures animate-scroll">
+    <h2></h2>
+    <div class="gallery-container">
+        <div class="gallery">
+            <div class="gallery-item" style="background-image: url('');"> </div>
+            <div class="gallery-item" style="background-image: url('');"> </div>
+            <div class="gallery-item" style="background-image: url('');"> </div>
+            <div class="gallery-item" style="background-image: url('');"> </div>
+        </div>
+    </div>
+</section>
+
+
+<style>
+    /* General Styles */
+    .button {
+        display: inline-block;
+        margin-top: 1em;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #000000;
+        background-color: #2a363f;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #0e1f0c;
+        border-radius: 10px;
+    }
+
+    /* Pictures Section Styles */
+    .pictures {
+        margin-top: 2em;
+        padding: 20px;
+        background-color: #000000;
+        border-radius: 10px;
+        height: 500px;
+        position: relative;
+    }
+
+
+    .pictures h2 {
+         color: #ffffff;
+         font-size: 34px;
+        }
+
+    .gallery-container {
+        overflow-x: hidden; /* Hide horizontal scrollbar and prevent scrolling */
+        white-space: nowrap;
+        padding: 10px;
+        border-radius: 30px;
+        max-height: 6100px;
+        background-color: #000;
+        position: relative;
+        user-select: none; /* Disable text selection */
+        pointer-events: none; /* Disable pointer events */
+    }
+
+    .gallery {
+        display: flex;
+        gap: 10px;
+    }
+
+    .gallery-item {
+        display: inline-block;
+        width: 500px;
+        height: 400px;
+        background-color: #181818;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        line-height: 150px;
+        border-radius: 30px;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+        animation: scroll linear;
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.02);
+    }
+
+    /* Scrollbar Styling */
+    .gallery-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar */
+    }
+
+    /* Fading effect */
+    .gallery-container::before, .gallery-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 700px;
+        z-index: 2;
+    }
+
+    .gallery-container::before {
+        left: 0;
+        background: linear-gradient(to right, #000000, transparent);
+    }
+
+    .gallery-container::after {
+        right: 0;
+        background: linear-gradient(to left, #000000, transparent);
+    }
+</style>
+
+<script>
+    // JavaScript for seamless scrolling
+    const gallery = document.querySelector('.gallery');
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    const totalWidth = galleryItems[0].offsetWidth * galleryItems.length;
+
+    // Clone the gallery items to make the scrolling seamless
+    function cloneItems() {
+        galleryItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            gallery.appendChild(clone);
+        });
+    }
+
+    function startScrolling() {
+        let scrollAmount = 0;
+        function step() {
+            scrollAmount += 1; // Adjust the speed here
+            if (scrollAmount >= totalWidth) {
+                gallery.style.transform = 'translateX(0)';
+                scrollAmount = 0;
+            } else {
+                gallery.style.transform = `translateX(-${scrollAmount}px)`;
+            }
+            requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
+    cloneItems();
+    startScrolling();
+</script>
+
 
     <section class="section how-to-order fade-in">
         <h2>How to Order</h2>
